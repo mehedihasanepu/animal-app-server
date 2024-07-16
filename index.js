@@ -29,7 +29,7 @@ async function run() {
         const animalCollection = client.db("animalAppDB").collection("animals");
         const categoryCollection = client.db("animalAppDB").collection("category");
 
-
+        //Animal collection API
 
         app.post('/animals', async (req, res) => {
             const item = req.body;
@@ -49,13 +49,17 @@ async function run() {
                 res.status(500).send("Error fetching animal data");
             }
         });
-        
+
+        // get all animal data
+
         app.get('/allAnimal', async (req, res) => {
             const cursor = animalCollection.find();
             const result = await cursor.toArray();
             res.send(result)
         });
 
+
+        //Category collection API 
 
         app.post('/categories', async (req, res) => {
             const item = req.body;
@@ -68,7 +72,6 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result)
         });
-
 
         // Send a ping to confirm a successful connection
         // await client.db("admin").command({ ping: 1 });
